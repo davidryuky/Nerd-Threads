@@ -3,9 +3,11 @@ import React from 'react';
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import { CartProvider } from './contexts/CartContext';
+import { NotificationProvider } from './contexts/NotificationContext';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Notification from './components/Notification';
 
 import HomePage from './pages/HomePage';
 import CatalogPage from './pages/CatalogPage';
@@ -59,9 +61,12 @@ const App: React.FC = () => {
   return (
     <AuthProvider>
       <CartProvider>
-        <HashRouter>
-          <AppContent />
-        </HashRouter>
+        <NotificationProvider>
+            <HashRouter>
+                <AppContent />
+                <Notification />
+            </HashRouter>
+        </NotificationProvider>
       </CartProvider>
     </AuthProvider>
   );

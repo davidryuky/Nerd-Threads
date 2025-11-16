@@ -11,7 +11,7 @@ const categories = [
 ];
 
 const HomePage: React.FC = () => {
-    const featuredProducts = products.slice(0, 4);
+    const featuredProducts = products.slice(0, 8);
     const offerProduct = products[1];
 
     return (

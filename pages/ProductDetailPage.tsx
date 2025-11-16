@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { products } from '../data/products';
 import { useCart } from '../contexts/CartContext';
+import { useNotification } from '../contexts/NotificationContext';
 import ProductCard from '../components/ProductCard';
 
 const ProductDetailPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
     const product = products.find(p => p.id === id);
     const { addToCart } = useCart();
+    const { showNotification } = useNotification();
 
     const [selectedSize, setSelectedSize] = useState<string | null>(product ? product.sizes[0] : null);
     const [quantity, setQuantity] = useState(1);
@@ -20,12 +22,9 @@ const ProductDetailPage: React.FC = () => {
     const handleAddToCart = () => {
         if (selectedSize) {
             addToCart(product, selectedSize, quantity);
-            // Here you would trigger a custom toast notification
-            // For now, we'll use a console log as a placeholder for the new visual feedback
-            console.log(`${product.name} (Tamanho: ${selectedSize}) x${quantity} adicionado à mochila.`);
+            showNotification('Item adicionado à sua Mochila!', 'success');
         } else {
-            // Placeholder for a notification about selecting a size
-            console.log("Aventureiro, escolha um tamanho para o seu item!");
+            showNotification('Aventureiro, escolha um tamanho!', 'warning');
         }
     };
     
