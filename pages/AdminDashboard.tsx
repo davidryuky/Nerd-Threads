@@ -13,8 +13,6 @@ const mockOrders: Order[] = [
 
 type AdminView = 'dashboard' | 'products' | 'orders' | 'coupons';
 
-// FIX: Omitted 'sizes' from the Product type and then added it back as a string.
-// This correctly types `sizes` as a string for the form state, resolving the type conflict.
 const newProductInitialState: Omit<Product, 'id' | 'reviews' | 'gallery' | 'details' | 'sizes'> & { sizes: string } = {
     name: '',
     price: 0,
@@ -52,7 +50,7 @@ const AdminDashboard: React.FC = () => {
             stock: Number(newProduct.stock),
             sizes: newProduct.sizes.split(',').map(s => s.trim().toUpperCase()),
             reviews: [],
-            gallery: [`${newProduct.image}-2`, `${newProduct.image}-3`, `${newProduct.image}-4`], // Mock gallery
+            gallery: [`${newProduct.image}-2`, `${newProduct.image}-3`, `${newProduct.image}-4`],
             details: ['100% Algodão', 'Estampa de alta qualidade'],
         };
         setProducts(prev => [productToAdd, ...prev]);
@@ -62,21 +60,21 @@ const AdminDashboard: React.FC = () => {
 
     const renderAddProductForm = () => (
         <div>
-            <div className="flex justify-between items-center mb-4">
-                <h2 className="text-2xl font-bold">Adicionar Novo Produto</h2>
+            <div className="flex justify-between items-center mb-6">
+                <h2 className="text-3xl font-cinzel font-bold">Forjar Novo Item</h2>
                 <button onClick={() => setIsAddingProduct(false)} className="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded">
                     Cancelar
                 </button>
             </div>
-            <form onSubmit={handleAddProduct} className="bg-gray-800 p-6 rounded-lg space-y-4">
+            <form onSubmit={handleAddProduct} className="bg-gray-800 p-6 rounded-lg space-y-4 border border-gray-700">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input type="text" name="name" value={newProduct.name} onChange={handleInputChange} placeholder="Nome do Produto" required className="bg-gray-900 border border-gray-600 rounded-md p-3 focus:border-cyan-500 focus:outline-none w-full" />
-                    <input type="number" name="price" value={newProduct.price} onChange={handleInputChange} placeholder="Preço (ex: 89.90)" required className="bg-gray-900 border border-gray-600 rounded-md p-3 focus:border-cyan-500 focus:outline-none w-full" />
+                    <input type="text" name="name" value={newProduct.name} onChange={handleInputChange} placeholder="Nome do Item" required className="rpg-input w-full" />
+                    <input type="number" step="0.01" name="price" value={newProduct.price} onChange={handleInputChange} placeholder="Valor (moedas de ouro)" required className="rpg-input w-full" />
                 </div>
-                <textarea name="description" value={newProduct.description} onChange={handleInputChange} placeholder="Descrição do Produto" rows={4} required className="bg-gray-900 border border-gray-600 rounded-md p-3 focus:border-cyan-500 focus:outline-none w-full"></textarea>
-                <input type="text" name="image" value={newProduct.image} onChange={handleInputChange} placeholder="URL da Imagem Principal" required className="bg-gray-900 border border-gray-600 rounded-md p-3 focus:border-cyan-500 focus:outline-none w-full" />
+                <textarea name="description" value={newProduct.description} onChange={handleInputChange} placeholder="Descrição do Item (Lore)" rows={4} required className="rpg-input w-full"></textarea>
+                <input type="text" name="image" value={newProduct.image} onChange={handleInputChange} placeholder="URL da Imagem" required className="rpg-input w-full" />
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <select name="category" value={newProduct.category} onChange={handleInputChange} className="bg-gray-900 border border-gray-600 rounded-md p-3 focus:border-cyan-500 focus:outline-none w-full">
+                    <select name="category" value={newProduct.category} onChange={handleInputChange} className="rpg-input w-full">
                         <option>Animes</option>
                         <option>Games</option>
                         <option>Filmes</option>
@@ -84,11 +82,11 @@ const AdminDashboard: React.FC = () => {
                         <option>Humor</option>
                         <option>Tecnologia</option>
                     </select>
-                    <input type="text" name="sizes" value={newProduct.sizes} onChange={handleInputChange} placeholder="Tamanhos (P,M,G)" required className="bg-gray-900 border border-gray-600 rounded-md p-3 focus:border-cyan-500 focus:outline-none w-full" />
-                    <input type="number" name="stock" value={newProduct.stock} onChange={handleInputChange} placeholder="Estoque" required className="bg-gray-900 border border-gray-600 rounded-md p-3 focus:border-cyan-500 focus:outline-none w-full" />
+                    <input type="text" name="sizes" value={newProduct.sizes} onChange={handleInputChange} placeholder="Tamanhos (P,M,G)" required className="rpg-input w-full" />
+                    <input type="number" name="stock" value={newProduct.stock} onChange={handleInputChange} placeholder="Estoque" required className="rpg-input w-full" />
                 </div>
-                <button type="submit" className="w-full bg-cyan-500 text-black font-bold py-3 rounded-lg hover:bg-cyan-400 transition-colors">
-                    Salvar Produto
+                <button type="submit" className="w-full rpg-button">
+                    Forjar Item
                 </button>
             </form>
         </div>
@@ -96,20 +94,20 @@ const AdminDashboard: React.FC = () => {
     
     const renderProductsView = () => (
          <div>
-            <div className="flex justify-between items-center mb-4">
-                <h2 className="text-2xl font-bold">Gerenciar Produtos</h2>
-                <button onClick={() => setIsAddingProduct(true)} className="bg-cyan-500 hover:bg-cyan-400 text-black font-bold py-2 px-4 rounded">
-                    Adicionar Novo Produto
+            <div className="flex justify-between items-center mb-6">
+                <h2 className="text-3xl font-cinzel font-bold">Gerenciar Arsenal</h2>
+                <button onClick={() => setIsAddingProduct(true)} className="rpg-button">
+                    Forjar Novo Item
                 </button>
             </div>
-            <div className="bg-gray-800 rounded-lg overflow-x-auto">
+            <div className="bg-gray-800 rounded-lg overflow-x-auto border border-gray-700">
                 <table className="w-full text-left">
-                    <thead className="bg-gray-700">
+                    <thead className="bg-gray-700/50">
                         <tr>
-                            <th className="p-4">Produto</th>
-                            <th className="p-4">Preço</th>
-                            <th className="p-4">Estoque</th>
-                            <th className="p-4">Ações</th>
+                            <th className="p-4 font-cinzel">Item</th>
+                            <th className="p-4 font-cinzel">Valor</th>
+                            <th className="p-4 font-cinzel">Estoque</th>
+                            <th className="p-4 font-cinzel">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -119,8 +117,8 @@ const AdminDashboard: React.FC = () => {
                                 <td className="p-4">R$ {p.price.toFixed(2)}</td>
                                 <td className="p-4">{p.stock}</td>
                                 <td className="p-4">
-                                    <button className="text-cyan-400 mr-2 hover:underline">Editar</button>
-                                    <button className="text-red-500 hover:underline">Excluir</button>
+                                    <button className="text-amber-400 mr-4 hover:underline">Editar</button>
+                                    <button className="text-red-500 hover:underline">Destruir</button>
                                 </td>
                             </tr>
                         ))}
@@ -137,16 +135,16 @@ const AdminDashboard: React.FC = () => {
             case 'orders':
                  return (
                     <div>
-                        <h2 className="text-2xl font-bold mb-4">Gerenciar Pedidos</h2>
-                        <div className="bg-gray-800 rounded-lg overflow-x-auto">
+                        <h2 className="text-3xl font-cinzel font-bold mb-6">Gerenciar Missões</h2>
+                        <div className="bg-gray-800 rounded-lg overflow-x-auto border border-gray-700">
                            <table className="w-full text-left">
-                                <thead className="bg-gray-700">
+                                <thead className="bg-gray-700/50">
                                     <tr>
-                                        <th className="p-4">Pedido ID</th>
-                                        <th className="p-4">Data</th>
-                                        <th className="p-4">Total</th>
-                                        <th className="p-4">Status</th>
-                                        <th className="p-4">Ações</th>
+                                        <th className="p-4 font-cinzel">Missão ID</th>
+                                        <th className="p-4 font-cinzel">Data</th>
+                                        <th className="p-4 font-cinzel">Recompensa</th>
+                                        <th className="p-4 font-cinzel">Status</th>
+                                        <th className="p-4 font-cinzel">Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -154,10 +152,10 @@ const AdminDashboard: React.FC = () => {
                                         <tr key={order.id} className="border-b border-gray-700">
                                             <td className="p-4">{order.id}</td>
                                             <td className="p-4">{order.date}</td>
-                                            <td className="p-4">R$ {order.total.toFixed(2)}</td>
+                                            <td className="p-4 text-amber-400">R$ {order.total.toFixed(2)}</td>
                                             <td className="p-4">{order.status}</td>
                                             <td className="p-4">
-                                                <button className="text-cyan-400">Ver</button>
+                                                <button className="text-amber-400 hover:underline">Ver Detalhes</button>
                                             </td>
                                         </tr>
                                     ))}
@@ -170,19 +168,19 @@ const AdminDashboard: React.FC = () => {
             default:
                 return (
                     <div>
-                        <h2 className="text-2xl font-bold mb-4">Visão Geral</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <div className="bg-gray-800 p-4 rounded-lg">
-                                <h3 className="text-gray-400">Vendas Totais</h3>
-                                <p className="text-3xl font-bold">R$ 15,234.50</p>
+                        <h2 className="text-3xl font-cinzel font-bold mb-6">Relatório da Guilda</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
+                                <h3 className="text-gray-400 font-cinzel">Tesouro Total</h3>
+                                <p className="text-4xl font-bold text-glow-gold">R$ 15,234.50</p>
                             </div>
-                             <div className="bg-gray-800 p-4 rounded-lg">
-                                <h3 className="text-gray-400">Novos Pedidos</h3>
-                                <p className="text-3xl font-bold">2</p>
+                             <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
+                                <h3 className="text-gray-400 font-cinzel">Novas Missões</h3>
+                                <p className="text-4xl font-bold">2</p>
                             </div>
-                            <div className="bg-gray-800 p-4 rounded-lg">
-                                <h3 className="text-gray-400">Total de Produtos</h3>
-                                <p className="text-3xl font-bold">{products.length}</p>
+                            <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
+                                <h3 className="text-gray-400 font-cinzel">Itens no Arsenal</h3>
+                                <p className="text-4xl font-bold">{products.length}</p>
                             </div>
                         </div>
                     </div>
@@ -192,18 +190,18 @@ const AdminDashboard: React.FC = () => {
 
     return (
         <div className="min-h-screen bg-gray-900 text-white flex">
-            <aside className="w-64 bg-gray-800 p-4 flex flex-col justify-between">
+            <aside className="w-64 bg-gray-800 p-4 flex flex-col justify-between border-r border-gray-700">
                 <div>
-                    <h1 className="text-2xl font-bold text-cyan-400 mb-8">Admin Panel</h1>
-                    <nav className="flex flex-col space-y-2">
-                        <button onClick={() => setActiveView('dashboard')} className={`text-left p-3 rounded-md transition-colors ${activeView === 'dashboard' ? 'bg-cyan-500 text-black' : 'hover:bg-gray-700'}`}>Dashboard</button>
-                        <button onClick={() => setActiveView('products')} className={`text-left p-3 rounded-md transition-colors ${activeView === 'products' ? 'bg-cyan-500 text-black' : 'hover:bg-gray-700'}`}>Produtos</button>
-                        <button onClick={() => setActiveView('orders')} className={`text-left p-3 rounded-md transition-colors ${activeView === 'orders' ? 'bg-cyan-500 text-black' : 'hover:bg-gray-700'}`}>Pedidos</button>
-                        <button onClick={() => setActiveView('coupons')} className={`text-left p-3 rounded-md transition-colors ${activeView === 'coupons' ? 'bg-cyan-500 text-black' : 'hover:bg-gray-700'}`}>Cupons</button>
+                    <h1 className="text-3xl font-cinzel font-bold text-glow-gold mb-10 text-center">Mestre da Guilda</h1>
+                    <nav className="flex flex-col space-y-3 font-cinzel text-lg">
+                        <button onClick={() => setActiveView('dashboard')} className={`text-left p-4 rounded-md transition-colors ${activeView === 'dashboard' ? 'bg-amber-500 text-black' : 'hover:bg-gray-700'}`}>Relatório</button>
+                        <button onClick={() => setActiveView('products')} className={`text-left p-4 rounded-md transition-colors ${activeView === 'products' ? 'bg-amber-500 text-black' : 'hover:bg-gray-700'}`}>Arsenal</button>
+                        <button onClick={() => setActiveView('orders')} className={`text-left p-4 rounded-md transition-colors ${activeView === 'orders' ? 'bg-amber-500 text-black' : 'hover:bg-gray-700'}`}>Missões</button>
+                        <button onClick={() => setActiveView('coupons')} className={`text-left p-4 rounded-md transition-colors ${activeView === 'coupons' ? 'bg-amber-500 text-black' : 'hover:bg-gray-700'}`}>Pergaminhos</button>
                     </nav>
                 </div>
                 <div>
-                     <button onClick={handleLogout} className="w-full text-left p-3 rounded-md text-red-500 hover:bg-red-500/10 transition-colors">Sair</button>
+                     <button onClick={handleLogout} className="w-full text-left p-4 rounded-md text-red-500 hover:bg-red-500/10 transition-colors font-cinzel text-lg">Encerrar Sessão</button>
                 </div>
             </aside>
             <main className="flex-grow p-8 overflow-y-auto">

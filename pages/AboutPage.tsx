@@ -1,22 +1,21 @@
-
 import React from 'react';
 
 const AboutPage: React.FC = () => {
     return (
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <h1 className="text-5xl font-bold text-white mb-6 neon-text-blue">Sobre a Nerd Threads</h1>
-            <div className="prose prose-invert prose-lg text-gray-300 space-y-6">
+            <h1 className="text-5xl font-bold text-white mb-6 text-glow-gold">A História da Guilda</h1>
+            <div className="prose prose-invert prose-lg text-gray-300 space-y-6 leading-relaxed">
                 <p>
-                    A Nerd Threads nasceu de uma paixão compartilhada: a cultura geek. Somos mais do que uma loja de camisetas; somos um ponto de encontro para fãs de animes, games, filmes, séries e tudo que envolve o universo nerd e da tecnologia.
+                    Nos anais da cultura pop, onde reinos de animes, masmorras de games e galáxias de filmes colidem, a guilda Nerd Threads foi forjada. Nascemos de um pacto entre aventureiros que compartilhavam uma mesma paixão: a cultura geek em todas as suas formas.
                 </p>
                 <p>
-                    Nossa missão é simples: criar produtos de alta qualidade que permitam que você vista sua paixão com orgulho e estilo. Cada estampa é pensada e criada por uma equipe de designers que, assim como você, vive e respira essa cultura. Usamos apenas os melhores materiais, desde o algodão premium até as tintas de última geração, para garantir que sua camiseta seja tão durável quanto a sua saga favorita.
+                    Nossa missão é mais do que apenas criar camisetas; nós forjamos armaduras para o cotidiano. Cada item em nosso arsenal é uma relíquia, imbuída com a essência de suas sagas favoritas. Nossos ferreiros (designers) são mestres em seu ofício, e só utilizam os melhores materiais do reino — do algodão mais puro aos encantamentos de impressão mais duradouros.
                 </p>
                 <p>
-                    Acreditamos que uma camiseta é uma forma de expressão, uma armadura para o dia a dia, um estandarte. É a forma silenciosa de encontrar seus aliados no mundo real. Quando você veste Nerd Threads, você não está apenas vestindo uma peça de roupa, está carregando um pedaço do universo que você ama.
+                    Acreditamos que vestir uma camiseta é como erguer um estandarte. É um símbolo que conecta você a outros membros da sua tribo, um sinal silencioso que diz: "Eu entendo essa referência". Quando você veste Nerd Threads, você não está apenas usando uma peça de roupa; está carregando um artefato, uma parte do universo que te moldou.
                 </p>
                 <p>
-                    Bem-vindo à nossa comunidade. Vista sua paixão.
+                    Bem-vindo à nossa irmandade, aventureiro. Forje sua lenda.
                 </p>
             </div>
         </div>

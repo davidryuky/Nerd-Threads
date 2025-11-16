@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
@@ -13,13 +12,12 @@ const LoginPage: React.FC = () => {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (email.trim() === '' || password.trim() === '') {
-            alert("Por favor, preencha todos os campos.");
+            // Placeholder for a toast notification
+            console.log("Por favor, preencha todos os campos.");
             return;
         }
-        // Mock login
         login(email);
         
-        // Special admin case
         if (email === 'admin@nerdthreads.com' && password === 'admin123') {
              navigate('/admin');
         } else {
@@ -29,11 +27,12 @@ const LoginPage: React.FC = () => {
     
     return (
         <div className="flex items-center justify-center min-h-[80vh] px-4">
-            <div className="w-full max-w-md bg-gray-800 p-8 rounded-lg border border-gray-700 shadow-lg shadow-cyan-500/10">
-                <h1 className="text-3xl font-bold text-center text-white mb-6">{isLogin ? 'Login' : 'Criar Conta'}</h1>
+            <div className="w-full max-w-md bg-gray-800 p-8 rounded-lg border border-gray-700 shadow-lg shadow-amber-500/10">
+                <h1 className="text-4xl font-cinzel font-bold text-center text-white mb-6 text-glow-gold">{isLogin ? 'Portal da Guilda' : 'Junte-se à Aventura'}</h1>
+                <p className="text-center text-gray-400 mb-8">{isLogin ? 'Identifique-se, aventureiro!' : 'Crie sua identidade para começar.'}</p>
                 <form onSubmit={handleSubmit} className="space-y-6">
                     {!isLogin && (
-                        <input type="text" placeholder="Nome Completo" required className="w-full bg-gray-900 border border-gray-600 rounded-md p-3 focus:border-cyan-500 focus:outline-none"/>
+                        <input type="text" placeholder="Nome de Aventureiro" required className="w-full rpg-input"/>
                     )}
                     <input 
                         type="email" 
@@ -41,23 +40,23 @@ const LoginPage: React.FC = () => {
                         required 
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="w-full bg-gray-900 border border-gray-600 rounded-md p-3 focus:border-cyan-500 focus:outline-none"
+                        className="w-full rpg-input"
                     />
                     <input 
                         type="password" 
-                        placeholder="Senha" 
+                        placeholder="Senha Secreta" 
                         required 
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className="w-full bg-gray-900 border border-gray-600 rounded-md p-3 focus:border-cyan-500 focus:outline-none"
+                        className="w-full rpg-input"
                     />
-                     <button type="submit" className="w-full bg-cyan-500 text-black font-bold py-3 px-6 rounded-lg uppercase hover:bg-cyan-400 transition-colors neon-shadow-blue">
-                        {isLogin ? 'Entrar' : 'Cadastrar'}
+                     <button type="submit" className="w-full rpg-button">
+                        {isLogin ? 'Entrar' : 'Forjar Identidade'}
                     </button>
                 </form>
                 <div className="text-center mt-6">
-                    <button onClick={() => setIsLogin(!isLogin)} className="text-cyan-400 hover:underline">
-                        {isLogin ? 'Não tem uma conta? Cadastre-se' : 'Já tem uma conta? Faça login'}
+                    <button onClick={() => setIsLogin(!isLogin)} className="text-amber-400 hover:underline">
+                        {isLogin ? 'Não tem registro? Aliste-se!' : 'Já é da Guilda? Entre no Portal.'}
                     </button>
                 </div>
             </div>
