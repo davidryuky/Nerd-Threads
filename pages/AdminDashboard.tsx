@@ -61,20 +61,20 @@ const AdminDashboard: React.FC = () => {
     const renderAddProductForm = () => (
         <div>
             <div className="flex justify-between items-center mb-6">
-                <h2 className="text-3xl font-cinzel font-bold">Forjar Novo Item</h2>
+                <h2 className="text-3xl font-bold">Forjar Novo Item</h2>
                 <button onClick={() => setIsAddingProduct(false)} className="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded">
                     Cancelar
                 </button>
             </div>
             <form onSubmit={handleAddProduct} className="bg-gray-800 p-6 rounded-lg space-y-4 border border-gray-700">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input type="text" name="name" value={newProduct.name} onChange={handleInputChange} placeholder="Nome do Item" required className="rpg-input w-full" />
-                    <input type="number" step="0.01" name="price" value={newProduct.price} onChange={handleInputChange} placeholder="Valor (moedas de ouro)" required className="rpg-input w-full" />
+                    <input type="text" name="name" value={newProduct.name} onChange={handleInputChange} placeholder="Nome do Item" required className="theme-input w-full" />
+                    <input type="number" step="0.01" name="price" value={newProduct.price} onChange={handleInputChange} placeholder="Valor (moedas de ouro)" required className="theme-input w-full" />
                 </div>
-                <textarea name="description" value={newProduct.description} onChange={handleInputChange} placeholder="Descrição do Item (Lore)" rows={4} required className="rpg-input w-full"></textarea>
-                <input type="text" name="image" value={newProduct.image} onChange={handleInputChange} placeholder="URL da Imagem" required className="rpg-input w-full" />
+                <textarea name="description" value={newProduct.description} onChange={handleInputChange} placeholder="Descrição do Item (Lore)" rows={4} required className="theme-input w-full"></textarea>
+                <input type="text" name="image" value={newProduct.image} onChange={handleInputChange} placeholder="URL da Imagem" required className="theme-input w-full" />
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <select name="category" value={newProduct.category} onChange={handleInputChange} className="rpg-input w-full">
+                    <select name="category" value={newProduct.category} onChange={handleInputChange} className="theme-input w-full">
                         <option>Animes</option>
                         <option>Games</option>
                         <option>Filmes</option>
@@ -82,10 +82,10 @@ const AdminDashboard: React.FC = () => {
                         <option>Humor</option>
                         <option>Tecnologia</option>
                     </select>
-                    <input type="text" name="sizes" value={newProduct.sizes} onChange={handleInputChange} placeholder="Tamanhos (P,M,G)" required className="rpg-input w-full" />
-                    <input type="number" name="stock" value={newProduct.stock} onChange={handleInputChange} placeholder="Estoque" required className="rpg-input w-full" />
+                    <input type="text" name="sizes" value={newProduct.sizes} onChange={handleInputChange} placeholder="Tamanhos (P,M,G)" required className="theme-input w-full" />
+                    <input type="number" name="stock" value={newProduct.stock} onChange={handleInputChange} placeholder="Estoque" required className="theme-input w-full" />
                 </div>
-                <button type="submit" className="w-full rpg-button">
+                <button type="submit" className="w-full theme-button">
                     Forjar Item
                 </button>
             </form>
@@ -95,8 +95,8 @@ const AdminDashboard: React.FC = () => {
     const renderProductsView = () => (
          <div>
             <div className="flex justify-between items-center mb-6">
-                <h2 className="text-3xl font-cinzel font-bold">Gerenciar Arsenal</h2>
-                <button onClick={() => setIsAddingProduct(true)} className="rpg-button">
+                <h2 className="text-3xl font-bold">Gerenciar Arsenal</h2>
+                <button onClick={() => setIsAddingProduct(true)} className="theme-button">
                     Forjar Novo Item
                 </button>
             </div>
@@ -104,10 +104,10 @@ const AdminDashboard: React.FC = () => {
                 <table className="w-full text-left">
                     <thead className="bg-gray-700/50">
                         <tr>
-                            <th className="p-4 font-cinzel">Item</th>
-                            <th className="p-4 font-cinzel">Valor</th>
-                            <th className="p-4 font-cinzel">Estoque</th>
-                            <th className="p-4 font-cinzel">Ações</th>
+                            <th className="p-4">Item</th>
+                            <th className="p-4">Valor</th>
+                            <th className="p-4">Estoque</th>
+                            <th className="p-4">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -117,7 +117,7 @@ const AdminDashboard: React.FC = () => {
                                 <td className="p-4">R$ {p.price.toFixed(2)}</td>
                                 <td className="p-4">{p.stock}</td>
                                 <td className="p-4">
-                                    <button className="text-amber-400 mr-4 hover:underline">Editar</button>
+                                    <button className="text-cyan-400 mr-4 hover:underline">Editar</button>
                                     <button className="text-red-500 hover:underline">Destruir</button>
                                 </td>
                             </tr>
@@ -135,16 +135,16 @@ const AdminDashboard: React.FC = () => {
             case 'orders':
                  return (
                     <div>
-                        <h2 className="text-3xl font-cinzel font-bold mb-6">Gerenciar Missões</h2>
+                        <h2 className="text-3xl font-bold mb-6">Gerenciar Missões</h2>
                         <div className="bg-gray-800 rounded-lg overflow-x-auto border border-gray-700">
                            <table className="w-full text-left">
                                 <thead className="bg-gray-700/50">
                                     <tr>
-                                        <th className="p-4 font-cinzel">Missão ID</th>
-                                        <th className="p-4 font-cinzel">Data</th>
-                                        <th className="p-4 font-cinzel">Recompensa</th>
-                                        <th className="p-4 font-cinzel">Status</th>
-                                        <th className="p-4 font-cinzel">Ações</th>
+                                        <th className="p-4">Missão ID</th>
+                                        <th className="p-4">Data</th>
+                                        <th className="p-4">Recompensa</th>
+                                        <th className="p-4">Status</th>
+                                        <th className="p-4">Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -152,10 +152,10 @@ const AdminDashboard: React.FC = () => {
                                         <tr key={order.id} className="border-b border-gray-700">
                                             <td className="p-4">{order.id}</td>
                                             <td className="p-4">{order.date}</td>
-                                            <td className="p-4 text-amber-400">R$ {order.total.toFixed(2)}</td>
+                                            <td className="p-4 text-cyan-400">R$ {order.total.toFixed(2)}</td>
                                             <td className="p-4">{order.status}</td>
                                             <td className="p-4">
-                                                <button className="text-amber-400 hover:underline">Ver Detalhes</button>
+                                                <button className="text-cyan-400 hover:underline">Ver Detalhes</button>
                                             </td>
                                         </tr>
                                     ))}
@@ -168,18 +168,18 @@ const AdminDashboard: React.FC = () => {
             default:
                 return (
                     <div>
-                        <h2 className="text-3xl font-cinzel font-bold mb-6">Relatório da Guilda</h2>
+                        <h2 className="text-3xl font-bold mb-6">Relatório da Guilda</h2>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                             <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
-                                <h3 className="text-gray-400 font-cinzel">Tesouro Total</h3>
-                                <p className="text-4xl font-bold text-glow-gold">R$ 15,234.50</p>
+                                <h3 className="text-gray-400">Tesouro Total</h3>
+                                <p className="text-4xl font-bold text-glow-accent">R$ 15,234.50</p>
                             </div>
                              <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
-                                <h3 className="text-gray-400 font-cinzel">Novas Missões</h3>
+                                <h3 className="text-gray-400">Novas Missões</h3>
                                 <p className="text-4xl font-bold">2</p>
                             </div>
                             <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
-                                <h3 className="text-gray-400 font-cinzel">Itens no Arsenal</h3>
+                                <h3 className="text-gray-400">Itens no Arsenal</h3>
                                 <p className="text-4xl font-bold">{products.length}</p>
                             </div>
                         </div>
@@ -192,16 +192,16 @@ const AdminDashboard: React.FC = () => {
         <div className="min-h-screen bg-gray-900 text-white flex">
             <aside className="w-64 bg-gray-800 p-4 flex flex-col justify-between border-r border-gray-700">
                 <div>
-                    <h1 className="text-3xl font-cinzel font-bold text-glow-gold mb-10 text-center">Mestre da Guilda</h1>
-                    <nav className="flex flex-col space-y-3 font-cinzel text-lg">
-                        <button onClick={() => setActiveView('dashboard')} className={`text-left p-4 rounded-md transition-colors ${activeView === 'dashboard' ? 'bg-amber-500 text-black' : 'hover:bg-gray-700'}`}>Relatório</button>
-                        <button onClick={() => setActiveView('products')} className={`text-left p-4 rounded-md transition-colors ${activeView === 'products' ? 'bg-amber-500 text-black' : 'hover:bg-gray-700'}`}>Arsenal</button>
-                        <button onClick={() => setActiveView('orders')} className={`text-left p-4 rounded-md transition-colors ${activeView === 'orders' ? 'bg-amber-500 text-black' : 'hover:bg-gray-700'}`}>Missões</button>
-                        <button onClick={() => setActiveView('coupons')} className={`text-left p-4 rounded-md transition-colors ${activeView === 'coupons' ? 'bg-amber-500 text-black' : 'hover:bg-gray-700'}`}>Pergaminhos</button>
+                    <h1 className="text-3xl font-cinzel font-bold text-glow-accent mb-10 text-center">Mestre da Guilda</h1>
+                    <nav className="flex flex-col space-y-3 text-lg">
+                        <button onClick={() => setActiveView('dashboard')} className={`text-left p-4 rounded-md transition-colors ${activeView === 'dashboard' ? 'bg-cyan-500 text-black' : 'hover:bg-gray-700'}`}>Relatório</button>
+                        <button onClick={() => setActiveView('products')} className={`text-left p-4 rounded-md transition-colors ${activeView === 'products' ? 'bg-cyan-500 text-black' : 'hover:bg-gray-700'}`}>Arsenal</button>
+                        <button onClick={() => setActiveView('orders')} className={`text-left p-4 rounded-md transition-colors ${activeView === 'orders' ? 'bg-cyan-500 text-black' : 'hover:bg-gray-700'}`}>Missões</button>
+                        <button onClick={() => setActiveView('coupons')} className={`text-left p-4 rounded-md transition-colors ${activeView === 'coupons' ? 'bg-cyan-500 text-black' : 'hover:bg-gray-700'}`}>Pergaminhos</button>
                     </nav>
                 </div>
                 <div>
-                     <button onClick={handleLogout} className="w-full text-left p-4 rounded-md text-red-500 hover:bg-red-500/10 transition-colors font-cinzel text-lg">Encerrar Sessão</button>
+                     <button onClick={handleLogout} className="w-full text-left p-4 rounded-md text-red-500 hover:bg-red-500/10 transition-colors text-lg">Encerrar Sessão</button>
                 </div>
             </aside>
             <main className="flex-grow p-8 overflow-y-auto">

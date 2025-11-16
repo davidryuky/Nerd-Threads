@@ -37,15 +37,15 @@ const DashboardPage: React.FC = () => {
             case 'orders':
                 return (
                     <div>
-                        <h2 className="text-3xl font-cinzel font-bold mb-6">Minhas Missões</h2>
+                        <h2 className="text-3xl font-bold mb-6">Minhas Missões</h2>
                         <div className="space-y-4">
                             {mockOrders.map(order => (
                                 <div key={order.id} className="bg-gray-800 p-4 rounded-lg flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                                     <div className="flex-1">
-                                        <p className="font-bold font-cinzel text-lg">{order.id}</p>
+                                        <p className="font-bold text-lg">{order.id}</p>
                                         <p className="text-sm text-gray-400">{order.date}</p>
                                     </div>
-                                    <p className="text-lg text-amber-400">R$ {order.total.toFixed(2)}</p>
+                                    <p className="text-lg text-cyan-400">R$ {order.total.toFixed(2)}</p>
                                     <p className={`px-3 py-1 text-sm rounded-full font-semibold ${getStatusClass(order.status)}`}>{order.status}</p>
                                 </div>
                             ))}
@@ -55,7 +55,7 @@ const DashboardPage: React.FC = () => {
             case 'address':
                  return (
                     <div>
-                        <h2 className="text-3xl font-cinzel font-bold mb-6">Minha Base de Operações</h2>
+                        <h2 className="text-3xl font-bold mb-6">Minha Base de Operações</h2>
                         <div className="bg-gray-800 p-6 rounded-lg text-lg">
                             <p>Rua dos Nerds, 123</p>
                             <p>Bairro da Programação</p>
@@ -66,15 +66,15 @@ const DashboardPage: React.FC = () => {
             case 'support':
                 return (
                      <div>
-                        <h2 className="text-3xl font-cinzel font-bold mb-6">Fale com um Mestre</h2>
-                        <p className="text-lg">Precisa de ajuda? Envie um corvo mensageiro para <a href="mailto:suporte@nerdthreads.com" className="text-amber-400 hover:underline">suporte@nerdthreads.com</a>.</p>
+                        <h2 className="text-3xl font-bold mb-6">Fale com um Mestre</h2>
+                        <p className="text-lg">Precisa de ajuda? Envie um corvo mensageiro para <a href="mailto:suporte@nerdthreads.com" className="text-cyan-400 hover:underline">suporte@nerdthreads.com</a>.</p>
                     </div>
                 );
             case 'account':
             default:
                 return (
                     <div>
-                        <h2 className="text-3xl font-cinzel font-bold mb-6">Ficha do Aventureiro</h2>
+                        <h2 className="text-3xl font-bold mb-6">Ficha do Aventureiro</h2>
                         <div className="bg-gray-800 p-6 rounded-lg text-lg space-y-2">
                             <p><strong>Nome:</strong> {user?.name}</p>
                             <p><strong>Email:</strong> {user?.email}</p>
@@ -86,14 +86,14 @@ const DashboardPage: React.FC = () => {
 
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <h1 className="text-5xl font-bold text-white mb-8">Bem-vindo, <span className="text-glow-gold">{user?.name}!</span></h1>
+            <h1 className="text-5xl font-bold text-white mb-8">Bem-vindo, <span className="text-glow-accent">{user?.name}!</span></h1>
             <div className="flex flex-col md:flex-row gap-10">
                 <aside className="w-full md:w-1/4">
-                    <nav className="flex flex-col space-y-2 font-cinzel text-lg">
-                        <button onClick={() => setActiveView('account')} className={`text-left p-4 rounded-md transition-colors ${activeView === 'account' ? 'bg-amber-500 text-black' : 'hover:bg-gray-800'}`}>Minha Ficha</button>
-                        <button onClick={() => setActiveView('orders')} className={`text-left p-4 rounded-md transition-colors ${activeView === 'orders' ? 'bg-amber-500 text-black' : 'hover:bg-gray-800'}`}>Missões</button>
-                        <button onClick={() => setActiveView('address')} className={`text-left p-4 rounded-md transition-colors ${activeView === 'address' ? 'bg-amber-500 text-black' : 'hover:bg-gray-800'}`}>Base</button>
-                        <button onClick={() => setActiveView('support')} className={`text-left p-4 rounded-md transition-colors ${activeView === 'support' ? 'bg-amber-500 text-black' : 'hover:bg-gray-800'}`}>Suporte</button>
+                    <nav className="flex flex-col space-y-2 text-lg">
+                        <button onClick={() => setActiveView('account')} className={`text-left p-4 rounded-md transition-colors ${activeView === 'account' ? 'bg-cyan-500 text-black' : 'hover:bg-gray-800'}`}>Minha Ficha</button>
+                        <button onClick={() => setActiveView('orders')} className={`text-left p-4 rounded-md transition-colors ${activeView === 'orders' ? 'bg-cyan-500 text-black' : 'hover:bg-gray-800'}`}>Missões</button>
+                        <button onClick={() => setActiveView('address')} className={`text-left p-4 rounded-md transition-colors ${activeView === 'address' ? 'bg-cyan-500 text-black' : 'hover:bg-gray-800'}`}>Base</button>
+                        <button onClick={() => setActiveView('support')} className={`text-left p-4 rounded-md transition-colors ${activeView === 'support' ? 'bg-cyan-500 text-black' : 'hover:bg-gray-800'}`}>Suporte</button>
                         <button onClick={handleLogout} className="text-left p-4 rounded-md text-red-500 hover:bg-red-500/10 transition-colors">Abandonar Sessão</button>
                     </nav>
                 </aside>

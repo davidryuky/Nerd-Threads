@@ -7,11 +7,11 @@ const CartPage: React.FC = () => {
 
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <h1 className="text-5xl font-bold text-white mb-8 text-glow-gold">Sua Mochila de Itens</h1>
+            <h1 className="text-5xl font-bold text-white mb-8 text-glow-accent">Sua Mochila de Itens</h1>
             {cartCount === 0 ? (
                 <div className="text-center py-20 bg-gray-800 rounded-lg border border-gray-700">
-                    <p className="text-2xl font-cinzel text-gray-300">Sua mochila está vazia, aventureiro.</p>
-                    <Link to="/catalog" className="mt-8 inline-block rpg-button">
+                    <p className="text-2xl text-gray-300">Sua mochila está vazia, aventureiro.</p>
+                    <Link to="/catalog" className="mt-8 inline-block theme-button">
                         Buscar Tesouros
                     </Link>
                 </div>
@@ -22,16 +22,16 @@ const CartPage: React.FC = () => {
                             <div key={`${item.id}-${item.size}`} className="flex items-center bg-gray-800 p-4 rounded-lg border border-gray-700">
                                 <img src={item.image} alt={item.name} className="w-24 h-24 object-cover rounded-md border-2 border-gray-600" />
                                 <div className="flex-grow ml-4">
-                                    <h2 className="text-lg font-bold font-cinzel text-white">{item.name}</h2>
+                                    <h2 className="text-lg font-bold text-white">{item.name}</h2>
                                     <p className="text-sm text-gray-400">Tamanho: {item.size}</p>
-                                    <p className="text-md text-amber-400 font-semibold mt-1">R$ {item.price.toFixed(2)}</p>
+                                    <p className="text-md text-cyan-400 font-semibold mt-1">R$ {item.price.toFixed(2)}</p>
                                 </div>
                                 <div className="flex items-center gap-3">
                                     <input 
                                         type="number" 
                                         value={item.quantity}
                                         onChange={(e) => updateQuantity(item.id, item.size, parseInt(e.target.value))}
-                                        className="w-16 rpg-input text-center"
+                                        className="w-16 theme-input text-center"
                                         min="1"
                                     />
                                     <button onClick={() => removeFromCart(item.id, item.size)} className="text-gray-500 hover:text-red-500 p-2" aria-label="Descartar item">
@@ -43,7 +43,7 @@ const CartPage: React.FC = () => {
                     </div>
 
                     <div className="bg-gray-800 p-6 rounded-lg border border-gray-700 h-fit sticky top-24">
-                        <h2 className="text-2xl font-cinzel font-bold text-white mb-4 border-b border-gray-700 pb-3">Diário da Missão</h2>
+                        <h2 className="text-2xl font-bold text-white mb-4 border-b border-gray-700 pb-3">Diário da Missão</h2>
                         <div className="space-y-3 text-lg">
                             <div className="flex justify-between text-gray-300">
                                 <span>Subtotal ({cartCount} {cartCount > 1 ? "itens" : "item"})</span>
@@ -56,10 +56,10 @@ const CartPage: React.FC = () => {
                             <div className="border-t border-gray-700 my-2"></div>
                             <div className="flex justify-between text-white font-bold text-xl">
                                 <span>Recompensa Total</span>
-                                <span className="text-glow-gold">R$ {totalPrice.toFixed(2)}</span>
+                                <span className="text-glow-accent">R$ {totalPrice.toFixed(2)}</span>
                             </div>
                         </div>
-                        <Link to="/checkout" className="mt-6 w-full text-center block rpg-button">
+                        <Link to="/checkout" className="mt-6 w-full text-center block theme-button">
                             Finalizar Missão
                         </Link>
                     </div>

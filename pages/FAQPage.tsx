@@ -22,11 +22,11 @@ const faqs = [
 const FAQPage: React.FC = () => {
     return (
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <h1 className="text-5xl font-bold text-center text-white mb-10 text-glow-gold">Pergaminhos Antigos</h1>
+            <h1 className="text-5xl font-bold text-center text-white mb-10 text-glow-accent">Pergaminhos Antigos</h1>
             <div className="space-y-6">
                 {faqs.map((faq, index) => (
                     <div key={index} className="bg-gray-800 p-6 rounded-lg border border-gray-700">
-                        <h2 className="text-xl font-cinzel font-bold text-amber-400 mb-2">{faq.q}</h2>
+                        <h2 className="text-xl font-bold text-cyan-400 mb-2">{faq.q}</h2>
                         <p className="text-gray-300 leading-relaxed">{faq.a}</p>
                     </div>
                 ))}

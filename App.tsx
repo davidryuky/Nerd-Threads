@@ -35,7 +35,7 @@ const AppContent: React.FC = () => {
     }, [location.pathname]);
 
     return (
-        <div className="bg-gray-900 text-gray-200 min-h-screen flex flex-col">
+        <div className="bg-gray-950 text-gray-200 min-h-screen flex flex-col">
             {!isAdminRoute && <Header />}
             <main className="flex-grow">
                 <Routes>

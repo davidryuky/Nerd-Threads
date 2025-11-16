@@ -13,7 +13,7 @@ const ReturnsPolicyPage: React.FC = () => {
                 <h3>3. Item Amaldiçoado (com defeito)</h3>
                 <p>Se seu item chegou com algum defeito de forja, você tem 30 dias corridos para solicitar a troca. Após análise, enviaremos um novo artefato sem custo adicional para sua jornada.</p>
                 <h3>Como Iniciar uma Troca</h3>
-                <p>Para solicitar uma troca ou devolução, envie um corvo mensageiro para nosso suporte em <a href="mailto:suporte@nerdthreads.com" className="text-amber-400">suporte@nerdthreads.com</a>, informando o número da sua missão (pedido) e o motivo.</p>
+                <p>Para solicitar uma troca ou devolução, envie um corvo mensageiro para nosso suporte em <a href="mailto:suporte@nerdthreads.com" className="text-cyan-400">suporte@nerdthreads.com</a>, informando o número da sua missão (pedido) e o motivo.</p>
             </div>
         </div>
     );
