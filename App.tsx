@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import { CartProvider } from './contexts/CartContext';
@@ -29,6 +29,10 @@ import ProtectedRoute from './components/ProtectedRoute';
 const AppContent: React.FC = () => {
     const location = useLocation();
     const isAdminRoute = location.pathname.startsWith('/admin');
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location.pathname]);
 
     return (
         <div className="bg-gray-900 text-gray-200 min-h-screen flex flex-col">
