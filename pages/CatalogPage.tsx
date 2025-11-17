@@ -1,6 +1,8 @@
+
 import React, { useState } from 'react';
 import { products } from '../data/products';
 import ProductCard from '../components/ProductCard';
+import { theme } from '../theme';
 
 const categories = ['Todos', 'Animes', 'Games', 'Filmes', 'Séries', 'Humor', 'Tecnologia'];
 const sizes = ['P', 'M', 'G', 'GG', 'XG'];
@@ -19,9 +21,9 @@ const CatalogPage: React.FC = () => {
     };
 
     return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className={theme.container.page}>
             <header className="text-center mb-12">
-                <h1 className="text-5xl font-bold text-white text-glow-accent">Arsenal do Aventureiro</h1>
+                <h1 className={`text-5xl font-bold text-white font-cinzel ${theme.textGlow}`}>Arsenal do Aventureiro</h1>
                 <p className="text-lg text-gray-400 mt-2">Equipe-se com os melhores itens para a sua jornada.</p>
             </header>
 
@@ -32,13 +34,13 @@ const CatalogPage: React.FC = () => {
                         <h2 className="text-2xl font-semibold text-white mb-6 border-b border-gray-700 pb-3">Encantamentos</h2>
                         <div className="space-y-8">
                             <div>
-                                <h3 className="font-bold text-cyan-400 mb-3 uppercase tracking-wider text-sm">Categorias</h3>
+                                <h3 className={theme.text.label}>Categorias</h3>
                                 <ul className="space-y-2">
                                     {categories.map(cat => (
                                         <li key={cat}>
                                             <button 
                                                 onClick={() => handleFilter(cat)}
-                                                className={`w-full text-left px-3 py-2 rounded-md transition-colors text-gray-300 ${activeCategory === cat ? 'bg-cyan-500 text-black font-bold' : 'hover:bg-gray-700'}`}
+                                                className={theme.catalogFilterButton(activeCategory === cat)}
                                             >
                                                 {cat}
                                             </button>
@@ -47,7 +49,7 @@ const CatalogPage: React.FC = () => {
                                 </ul>
                             </div>
                             <div>
-                                <h3 className="font-bold text-cyan-400 mb-3 uppercase tracking-wider text-sm">Tamanho</h3>
+                                <h3 className={theme.text.label}>Tamanho</h3>
                                 <div className="flex flex-wrap gap-2">
                                     {sizes.map(size => (
                                         <button key={size} className="w-10 h-10 border border-gray-600 rounded-md hover:border-cyan-400 hover:text-cyan-400 transition-colors focus:border-cyan-500 focus:bg-cyan-500 focus:text-black">{size}</button>
@@ -55,7 +57,7 @@ const CatalogPage: React.FC = () => {
                                 </div>
                             </div>
                              <div>
-                                <h3 className="font-bold text-cyan-400 mb-3 uppercase tracking-wider text-sm">Valor</h3>
+                                <h3 className={theme.text.label}>Valor</h3>
                                 <input type="range" min="50" max="150" className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-cyan-500" />
                             </div>
                         </div>

@@ -1,7 +1,9 @@
+
 import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { Order } from '../types';
+import { theme } from '../theme';
 
 const mockOrders: Order[] = [
     { id: '#NT12345', date: '01/01/2024', total: 179.80, status: 'Delivered', items: [] },
@@ -37,7 +39,7 @@ const DashboardPage: React.FC = () => {
             case 'orders':
                 return (
                     <div>
-                        <h2 className="text-3xl font-bold mb-6">Minhas Missões</h2>
+                        <h2 className={theme.heading.subLeft}>Minhas Missões</h2>
                         <div className="space-y-4">
                             {mockOrders.map(order => (
                                 <div key={order.id} className="bg-gray-800 p-4 rounded-lg flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
@@ -55,7 +57,7 @@ const DashboardPage: React.FC = () => {
             case 'address':
                  return (
                     <div>
-                        <h2 className="text-3xl font-bold mb-6">Minha Base de Operações</h2>
+                        <h2 className={theme.heading.subLeft}>Minha Base de Operações</h2>
                         <div className="bg-gray-800 p-6 rounded-lg text-lg">
                             <p>Rua dos Nerds, 123</p>
                             <p>Bairro da Programação</p>
@@ -66,15 +68,15 @@ const DashboardPage: React.FC = () => {
             case 'support':
                 return (
                      <div>
-                        <h2 className="text-3xl font-bold mb-6">Fale com um Mestre</h2>
-                        <p className="text-lg">Precisa de ajuda? Envie um corvo mensageiro para <a href="mailto:suporte@nerdthreads.com" className="text-cyan-400 hover:underline">suporte@nerdthreads.com</a>.</p>
+                        <h2 className={theme.heading.subLeft}>Fale com um Mestre</h2>
+                        <p className="text-lg">Precisa de ajuda? Envie um corvo mensageiro para <a href="mailto:suporte@nerdthreads.com" className={theme.text.link}>suporte@nerdthreads.com</a>.</p>
                     </div>
                 );
             case 'account':
             default:
                 return (
                     <div>
-                        <h2 className="text-3xl font-bold mb-6">Ficha do Aventureiro</h2>
+                        <h2 className={theme.heading.subLeft}>Ficha do Aventureiro</h2>
                         <div className="bg-gray-800 p-6 rounded-lg text-lg space-y-2">
                             <p><strong>Nome:</strong> {user?.name}</p>
                             <p><strong>Email:</strong> {user?.email}</p>
@@ -85,15 +87,15 @@ const DashboardPage: React.FC = () => {
     };
 
     return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <h1 className="text-5xl font-bold text-white mb-8">Bem-vindo, <span className="text-glow-accent">{user?.name}!</span></h1>
+        <div className={theme.container.page}>
+            <h1 className={theme.heading.page()}>Bem-vindo, <span className={theme.textGlow}>{user?.name}!</span></h1>
             <div className="flex flex-col md:flex-row gap-10">
                 <aside className="w-full md:w-1/4">
                     <nav className="flex flex-col space-y-2 text-lg">
-                        <button onClick={() => setActiveView('account')} className={`text-left p-4 rounded-md transition-colors ${activeView === 'account' ? 'bg-cyan-500 text-black' : 'hover:bg-gray-800'}`}>Minha Ficha</button>
-                        <button onClick={() => setActiveView('orders')} className={`text-left p-4 rounded-md transition-colors ${activeView === 'orders' ? 'bg-cyan-500 text-black' : 'hover:bg-gray-800'}`}>Missões</button>
-                        <button onClick={() => setActiveView('address')} className={`text-left p-4 rounded-md transition-colors ${activeView === 'address' ? 'bg-cyan-500 text-black' : 'hover:bg-gray-800'}`}>Base</button>
-                        <button onClick={() => setActiveView('support')} className={`text-left p-4 rounded-md transition-colors ${activeView === 'support' ? 'bg-cyan-500 text-black' : 'hover:bg-gray-800'}`}>Suporte</button>
+                        <button onClick={() => setActiveView('account')} className={theme.dashboardNavButton(activeView === 'account')}>Minha Ficha</button>
+                        <button onClick={() => setActiveView('orders')} className={theme.dashboardNavButton(activeView === 'orders')}>Missões</button>
+                        <button onClick={() => setActiveView('address')} className={theme.dashboardNavButton(activeView === 'address')}>Base</button>
+                        <button onClick={() => setActiveView('support')} className={theme.dashboardNavButton(activeView === 'support')}>Suporte</button>
                         <button onClick={handleLogout} className="text-left p-4 rounded-md text-red-500 hover:bg-red-500/10 transition-colors">Abandonar Sessão</button>
                     </nav>
                 </aside>

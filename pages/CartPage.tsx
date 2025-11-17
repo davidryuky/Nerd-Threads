@@ -1,17 +1,19 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
+import { theme } from '../theme';
 
 const CartPage: React.FC = () => {
     const { cartItems, removeFromCart, updateQuantity, totalPrice, cartCount } = useCart();
 
     return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <h1 className="text-5xl font-bold text-white mb-8 text-glow-accent">Sua Mochila de Itens</h1>
+        <div className={theme.container.page}>
+            <h1 className={theme.heading.page()}>Sua Mochila de Itens</h1>
             {cartCount === 0 ? (
                 <div className="text-center py-20 bg-gray-800 rounded-lg border border-gray-700">
                     <p className="text-2xl text-gray-300">Sua mochila está vazia, aventureiro.</p>
-                    <Link to="/catalog" className="mt-8 inline-block theme-button">
+                    <Link to="/catalog" className={`mt-8 inline-block ${theme.button}`}>
                         Buscar Tesouros
                     </Link>
                 </div>
@@ -31,7 +33,7 @@ const CartPage: React.FC = () => {
                                         type="number" 
                                         value={item.quantity}
                                         onChange={(e) => updateQuantity(item.id, item.size, parseInt(e.target.value))}
-                                        className="w-16 theme-input text-center"
+                                        className={`w-16 text-center ${theme.input}`}
                                         min="1"
                                     />
                                     <button onClick={() => removeFromCart(item.id, item.size)} className="text-gray-500 hover:text-red-500 p-2" aria-label="Descartar item">
@@ -56,10 +58,10 @@ const CartPage: React.FC = () => {
                             <div className="border-t border-gray-700 my-2"></div>
                             <div className="flex justify-between text-white font-bold text-xl">
                                 <span>Recompensa Total</span>
-                                <span className="text-glow-accent">R$ {totalPrice.toFixed(2)}</span>
+                                <span className={theme.textGlow}>R$ {totalPrice.toFixed(2)}</span>
                             </div>
                         </div>
-                        <Link to="/checkout" className="mt-6 w-full text-center block theme-button">
+                        <Link to="/checkout" className={`mt-6 w-full text-center block ${theme.button}`}>
                             Finalizar Missão
                         </Link>
                     </div>

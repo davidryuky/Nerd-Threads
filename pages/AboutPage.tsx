@@ -1,10 +1,12 @@
+
 import React from 'react';
+import { theme } from '../theme';
 
 const AboutPage: React.FC = () => {
     return (
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <h1 className="text-5xl font-bold text-white mb-6 text-glow-accent">A História da Guilda</h1>
-            <div className="prose prose-invert prose-lg text-gray-300 space-y-6 leading-relaxed">
+        <div className={theme.container.page4xl}>
+            <h1 className={`${theme.heading.page(false)} mb-6`}>A História da Guilda</h1>
+            <div className={theme.text.prose}>
                 <p>
                     Nos anais da cultura pop, onde reinos de animes, masmorras de games e galáxias de filmes colidem, a guilda Nerd Threads foi forjada. Nascemos de um pacto entre aventureiros que compartilhavam uma mesma paixão: a cultura geek em todas as suas formas.
                 </p>

@@ -1,9 +1,11 @@
+
 import React from 'react';
+import { theme } from '../theme';
 
 const TermsOfUsePage: React.FC = () => {
     return (
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <h1 className="text-5xl font-bold text-white mb-6">Termos da Aventura</h1>
+        <div className={theme.container.page4xl}>
+            <h1 className={`${theme.heading.page(false)} mb-6`}>Termos da Aventura</h1>
             <div className="prose prose-invert prose-lg text-gray-300 space-y-4">
                 <h2>1. O Pacto</h2>
                 <p>Ao entrar nos domínios da Nerd Threads, você concorda em seguir as leis e regulamentos desta guilda. Se você não concordar com algum destes termos, sua entrada nestas terras é proibida. Os tesouros (materiais) aqui contidos são protegidos por leis de direitos autorais.</p>

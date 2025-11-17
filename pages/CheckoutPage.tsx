@@ -1,6 +1,8 @@
+
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
+import { theme } from '../theme';
 
 const CheckoutPage: React.FC = () => {
     const { cartItems, totalPrice, clearCart } = useCart();
@@ -18,33 +20,33 @@ const CheckoutPage: React.FC = () => {
         return (
             <div className="text-center py-20 text-white">
                 <p className="text-2xl">Sua mochila está vazia. Não há missão para finalizar.</p>
-                <Link to="/catalog" className="mt-8 inline-block theme-button">Buscar Tesouros</Link>
+                <Link to="/catalog" className={`mt-8 inline-block ${theme.button}`}>Buscar Tesouros</Link>
             </div>
         );
     }
 
     return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <h1 className="text-5xl font-bold text-white mb-8 text-glow-accent">Alquimia da Transação</h1>
+        <div className={theme.container.page}>
+            <h1 className={theme.heading.page()}>Alquimia da Transação</h1>
             <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <div className="lg:col-span-2 bg-gray-800 p-8 rounded-lg border border-gray-700">
-                    <h2 className="text-2xl font-bold text-white mb-6">Informações do Aventureiro</h2>
+                <div className={`lg:col-span-2 ${theme.container.section}`}>
+                    <h2 className={theme.heading.sub}>Informações do Aventureiro</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                         <input type="text" placeholder="Nome Completo" required className="theme-input w-full"/>
-                         <input type="email" placeholder="E-mail" required className="theme-input w-full"/>
-                         <input type="text" placeholder="Endereço (Sua Base de Operações)" required className="md:col-span-2 theme-input w-full"/>
-                         <input type="text" placeholder="Cidade" required className="theme-input w-full"/>
-                         <input type="text" placeholder="CEP" required className="theme-input w-full"/>
-                         <input type="text" placeholder="Estado" required className="theme-input w-full"/>
+                         <input type="text" placeholder="Nome Completo" required className={`w-full ${theme.input}`}/>
+                         <input type="email" placeholder="E-mail" required className={`w-full ${theme.input}`}/>
+                         <input type="text" placeholder="Endereço (Sua Base de Operações)" required className={`md:col-span-2 w-full ${theme.input}`}/>
+                         <input type="text" placeholder="Cidade" required className={`w-full ${theme.input}`}/>
+                         <input type="text" placeholder="CEP" required className={`w-full ${theme.input}`}/>
+                         <input type="text" placeholder="Estado" required className={`w-full ${theme.input}`}/>
                     </div>
 
-                    <h2 className="text-2xl font-bold text-white mt-10 mb-6">Forma de Pagamento</h2>
+                    <h2 className={`${theme.heading.sub} mt-10`}>Forma de Pagamento</h2>
                     <div className="space-y-4">
-                        <input type="text" placeholder="Número do Cartão Mágico" required className="w-full theme-input"/>
-                        <input type="text" placeholder="Nome no Cartão" required className="w-full theme-input"/>
+                        <input type="text" placeholder="Número do Cartão Mágico" required className={`w-full ${theme.input}`}/>
+                        <input type="text" placeholder="Nome no Cartão" required className={`w-full ${theme.input}`}/>
                         <div className="grid grid-cols-2 gap-4">
-                             <input type="text" placeholder="Validade (MM/AA)" required className="theme-input"/>
-                             <input type="text" placeholder="CVV (Código Rúnico)" required className="theme-input"/>
+                             <input type="text" placeholder="Validade (MM/AA)" required className={theme.input}/>
+                             <input type="text" placeholder="CVV (Código Rúnico)" required className={theme.input}/>
                         </div>
                     </div>
                 </div>
@@ -62,9 +64,9 @@ const CheckoutPage: React.FC = () => {
                     <div className="border-t border-gray-700 my-4"></div>
                      <div className="flex justify-between text-white font-bold text-xl">
                         <span>Total</span>
-                        <span className="text-glow-accent">R$ {totalPrice.toFixed(2)}</span>
+                        <span className={theme.textGlow}>R$ {totalPrice.toFixed(2)}</span>
                     </div>
-                    <button type="submit" className="mt-6 w-full text-center block theme-button">
+                    <button type="submit" className={`mt-6 w-full text-center block ${theme.button}`}>
                         Pagar e Concluir Missão
                     </button>
                 </div>

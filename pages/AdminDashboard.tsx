@@ -1,8 +1,10 @@
+
 import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { products as initialProducts } from '../data/products';
 import { Order, Product } from '../types';
+import { theme } from '../theme';
 
 const mockOrders: Order[] = [
     { id: '#NT12345', date: '01/01/2024', total: 179.80, status: 'Delivered', items: [] },
@@ -61,20 +63,20 @@ const AdminDashboard: React.FC = () => {
     const renderAddProductForm = () => (
         <div>
             <div className="flex justify-between items-center mb-6">
-                <h2 className="text-3xl font-bold">Forjar Novo Item</h2>
+                <h2 className={theme.heading.subLeft}>Forjar Novo Item</h2>
                 <button onClick={() => setIsAddingProduct(false)} className="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded">
                     Cancelar
                 </button>
             </div>
             <form onSubmit={handleAddProduct} className="bg-gray-800 p-6 rounded-lg space-y-4 border border-gray-700">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input type="text" name="name" value={newProduct.name} onChange={handleInputChange} placeholder="Nome do Item" required className="theme-input w-full" />
-                    <input type="number" step="0.01" name="price" value={newProduct.price} onChange={handleInputChange} placeholder="Valor (moedas de ouro)" required className="theme-input w-full" />
+                    <input type="text" name="name" value={newProduct.name} onChange={handleInputChange} placeholder="Nome do Item" required className={`w-full ${theme.input}`} />
+                    <input type="number" step="0.01" name="price" value={newProduct.price} onChange={handleInputChange} placeholder="Valor (moedas de ouro)" required className={`w-full ${theme.input}`} />
                 </div>
-                <textarea name="description" value={newProduct.description} onChange={handleInputChange} placeholder="Descrição do Item (Lore)" rows={4} required className="theme-input w-full"></textarea>
-                <input type="text" name="image" value={newProduct.image} onChange={handleInputChange} placeholder="URL da Imagem" required className="theme-input w-full" />
+                <textarea name="description" value={newProduct.description} onChange={handleInputChange} placeholder="Descrição do Item (Lore)" rows={4} required className={`w-full ${theme.input}`}></textarea>
+                <input type="text" name="image" value={newProduct.image} onChange={handleInputChange} placeholder="URL da Imagem" required className={`w-full ${theme.input}`} />
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <select name="category" value={newProduct.category} onChange={handleInputChange} className="theme-input w-full">
+                    <select name="category" value={newProduct.category} onChange={handleInputChange} className={`w-full ${theme.input}`}>
                         <option>Animes</option>
                         <option>Games</option>
                         <option>Filmes</option>
@@ -82,10 +84,10 @@ const AdminDashboard: React.FC = () => {
                         <option>Humor</option>
                         <option>Tecnologia</option>
                     </select>
-                    <input type="text" name="sizes" value={newProduct.sizes} onChange={handleInputChange} placeholder="Tamanhos (P,M,G)" required className="theme-input w-full" />
-                    <input type="number" name="stock" value={newProduct.stock} onChange={handleInputChange} placeholder="Estoque" required className="theme-input w-full" />
+                    <input type="text" name="sizes" value={newProduct.sizes} onChange={handleInputChange} placeholder="Tamanhos (P,M,G)" required className={`w-full ${theme.input}`} />
+                    <input type="number" name="stock" value={newProduct.stock} onChange={handleInputChange} placeholder="Estoque" required className={`w-full ${theme.input}`} />
                 </div>
-                <button type="submit" className="w-full theme-button">
+                <button type="submit" className={`w-full ${theme.button}`}>
                     Forjar Item
                 </button>
             </form>
@@ -95,29 +97,29 @@ const AdminDashboard: React.FC = () => {
     const renderProductsView = () => (
          <div>
             <div className="flex justify-between items-center mb-6">
-                <h2 className="text-3xl font-bold">Gerenciar Arsenal</h2>
-                <button onClick={() => setIsAddingProduct(true)} className="theme-button">
+                <h2 className={theme.heading.subLeft}>Gerenciar Arsenal</h2>
+                <button onClick={() => setIsAddingProduct(true)} className={theme.button}>
                     Forjar Novo Item
                 </button>
             </div>
-            <div className="bg-gray-800 rounded-lg overflow-x-auto border border-gray-700">
+            <div className={theme.admin.table.container}>
                 <table className="w-full text-left">
-                    <thead className="bg-gray-700/50">
+                    <thead className={theme.admin.table.header}>
                         <tr>
-                            <th className="p-4">Item</th>
-                            <th className="p-4">Valor</th>
-                            <th className="p-4">Estoque</th>
-                            <th className="p-4">Ações</th>
+                            <th className={theme.admin.table.th}>Item</th>
+                            <th className={theme.admin.table.th}>Valor</th>
+                            <th className={theme.admin.table.th}>Estoque</th>
+                            <th className={theme.admin.table.th}>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
                         {products.map(p => (
-                            <tr key={p.id} className="border-b border-gray-700">
-                                <td className="p-4">{p.name}</td>
-                                <td className="p-4">R$ {p.price.toFixed(2)}</td>
-                                <td className="p-4">{p.stock}</td>
-                                <td className="p-4">
-                                    <button className="text-cyan-400 mr-4 hover:underline">Editar</button>
+                            <tr key={p.id} className={theme.admin.table.tr}>
+                                <td className={theme.admin.table.td}>{p.name}</td>
+                                <td className={theme.admin.table.td}>R$ {p.price.toFixed(2)}</td>
+                                <td className={theme.admin.table.td}>{p.stock}</td>
+                                <td className={theme.admin.table.td}>
+                                    <button className={`${theme.text.link} mr-4`}>Editar</button>
                                     <button className="text-red-500 hover:underline">Destruir</button>
                                 </td>
                             </tr>
@@ -135,27 +137,27 @@ const AdminDashboard: React.FC = () => {
             case 'orders':
                  return (
                     <div>
-                        <h2 className="text-3xl font-bold mb-6">Gerenciar Missões</h2>
-                        <div className="bg-gray-800 rounded-lg overflow-x-auto border border-gray-700">
+                        <h2 className={theme.heading.subLeft}>Gerenciar Missões</h2>
+                        <div className={theme.admin.table.container}>
                            <table className="w-full text-left">
-                                <thead className="bg-gray-700/50">
+                                <thead className={theme.admin.table.header}>
                                     <tr>
-                                        <th className="p-4">Missão ID</th>
-                                        <th className="p-4">Data</th>
-                                        <th className="p-4">Recompensa</th>
-                                        <th className="p-4">Status</th>
-                                        <th className="p-4">Ações</th>
+                                        <th className={theme.admin.table.th}>Missão ID</th>
+                                        <th className={theme.admin.table.th}>Data</th>
+                                        <th className={theme.admin.table.th}>Recompensa</th>
+                                        <th className={theme.admin.table.th}>Status</th>
+                                        <th className={theme.admin.table.th}>Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {mockOrders.map(order => (
-                                        <tr key={order.id} className="border-b border-gray-700">
-                                            <td className="p-4">{order.id}</td>
-                                            <td className="p-4">{order.date}</td>
-                                            <td className="p-4 text-cyan-400">R$ {order.total.toFixed(2)}</td>
-                                            <td className="p-4">{order.status}</td>
-                                            <td className="p-4">
-                                                <button className="text-cyan-400 hover:underline">Ver Detalhes</button>
+                                        <tr key={order.id} className={theme.admin.table.tr}>
+                                            <td className={theme.admin.table.td}>{order.id}</td>
+                                            <td className={theme.admin.table.td}>{order.date}</td>
+                                            <td className={`${theme.admin.table.td} text-cyan-400`}>R$ {order.total.toFixed(2)}</td>
+                                            <td className={theme.admin.table.td}>{order.status}</td>
+                                            <td className={theme.admin.table.td}>
+                                                <button className={theme.text.link}>Ver Detalhes</button>
                                             </td>
                                         </tr>
                                     ))}
@@ -168,11 +170,11 @@ const AdminDashboard: React.FC = () => {
             default:
                 return (
                     <div>
-                        <h2 className="text-3xl font-bold mb-6">Relatório da Guilda</h2>
+                        <h2 className={theme.heading.subLeft}>Relatório da Guilda</h2>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                             <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
                                 <h3 className="text-gray-400">Tesouro Total</h3>
-                                <p className="text-4xl font-bold text-glow-accent">R$ 15,234.50</p>
+                                <p className={`text-4xl font-bold ${theme.textGlow}`}>R$ 15,234.50</p>
                             </div>
                              <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
                                 <h3 className="text-gray-400">Novas Missões</h3>
@@ -192,12 +194,12 @@ const AdminDashboard: React.FC = () => {
         <div className="min-h-screen bg-gray-900 text-white flex">
             <aside className="w-64 bg-gray-800 p-4 flex flex-col justify-between border-r border-gray-700">
                 <div>
-                    <h1 className="text-3xl font-cinzel font-bold text-glow-accent mb-10 text-center">Mestre da Guilda</h1>
-                    <nav className="flex flex-col space-y-3 text-lg">
-                        <button onClick={() => setActiveView('dashboard')} className={`text-left p-4 rounded-md transition-colors ${activeView === 'dashboard' ? 'bg-cyan-500 text-black' : 'hover:bg-gray-700'}`}>Relatório</button>
-                        <button onClick={() => setActiveView('products')} className={`text-left p-4 rounded-md transition-colors ${activeView === 'products' ? 'bg-cyan-500 text-black' : 'hover:bg-gray-700'}`}>Arsenal</button>
-                        <button onClick={() => setActiveView('orders')} className={`text-left p-4 rounded-md transition-colors ${activeView === 'orders' ? 'bg-cyan-500 text-black' : 'hover:bg-gray-700'}`}>Missões</button>
-                        <button onClick={() => setActiveView('coupons')} className={`text-left p-4 rounded-md transition-colors ${activeView === 'coupons' ? 'bg-cyan-500 text-black' : 'hover:bg-gray-700'}`}>Pergaminhos</button>
+                    <h1 className={`text-3xl font-cinzel font-bold mb-10 text-center ${theme.textGlow}`}>Mestre da Guilda</h1>
+                    <nav className="flex flex-col space-y-3">
+                        <button onClick={() => setActiveView('dashboard')} className={theme.navButton(activeView === 'dashboard')}>Relatório</button>
+                        <button onClick={() => setActiveView('products')} className={theme.navButton(activeView === 'products')}>Arsenal</button>
+                        <button onClick={() => setActiveView('orders')} className={theme.navButton(activeView === 'orders')}>Missões</button>
+                        <button onClick={() => setActiveView('coupons')} className={theme.navButton(activeView === 'coupons')}>Pergaminhos</button>
                     </nav>
                 </div>
                 <div>

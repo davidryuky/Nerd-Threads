@@ -1,6 +1,8 @@
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { theme } from '../theme';
 
 const LoginPage: React.FC = () => {
     const [isLogin, setIsLogin] = useState(true);
@@ -27,12 +29,12 @@ const LoginPage: React.FC = () => {
     
     return (
         <div className="flex items-center justify-center min-h-[80vh] px-4">
-            <div className="w-full max-w-md bg-gray-800 p-8 rounded-lg border border-gray-700 shadow-lg shadow-cyan-500/10">
-                <h1 className="text-4xl font-bold text-center text-white mb-6 text-glow-accent">{isLogin ? 'Portal da Guilda' : 'Junte-se à Aventura'}</h1>
+            <div className={theme.container.login}>
+                <h1 className={`text-4xl font-bold text-center text-white mb-6 ${theme.textGlow}`}>{isLogin ? 'Portal da Guilda' : 'Junte-se à Aventura'}</h1>
                 <p className="text-center text-gray-400 mb-8">{isLogin ? 'Identifique-se, aventureiro!' : 'Crie sua identidade para começar.'}</p>
                 <form onSubmit={handleSubmit} className="space-y-6">
                     {!isLogin && (
-                        <input type="text" placeholder="Nome de Aventureiro" required className="w-full theme-input"/>
+                        <input type="text" placeholder="Nome de Aventureiro" required className={`w-full ${theme.input}`}/>
                     )}
                     <input 
                         type="email" 
@@ -40,7 +42,7 @@ const LoginPage: React.FC = () => {
                         required 
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="w-full theme-input"
+                        className={`w-full ${theme.input}`}
                     />
                     <input 
                         type="password" 
@@ -48,14 +50,14 @@ const LoginPage: React.FC = () => {
                         required 
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className="w-full theme-input"
+                        className={`w-full ${theme.input}`}
                     />
-                     <button type="submit" className="w-full theme-button">
+                     <button type="submit" className={`w-full ${theme.button}`}>
                         {isLogin ? 'Entrar' : 'Forjar Identidade'}
                     </button>
                 </form>
                 <div className="text-center mt-6">
-                    <button onClick={() => setIsLogin(!isLogin)} className="text-cyan-400 hover:underline">
+                    <button onClick={() => setIsLogin(!isLogin)} className={theme.text.link}>
                         {isLogin ? 'Não tem registro? Aliste-se!' : 'Já é da Guilda? Entre no Portal.'}
                     </button>
                 </div>

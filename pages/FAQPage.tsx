@@ -1,4 +1,6 @@
+
 import React from 'react';
+import { theme } from '../theme';
 
 const faqs = [
     {
@@ -21,8 +23,8 @@ const faqs = [
 
 const FAQPage: React.FC = () => {
     return (
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <h1 className="text-5xl font-bold text-center text-white mb-10 text-glow-accent">Pergaminhos Antigos</h1>
+        <div className={theme.container.page4xl}>
+            <h1 className={theme.heading.page(true)}>Pergaminhos Antigos</h1>
             <div className="space-y-6">
                 {faqs.map((faq, index) => (
                     <div key={index} className="bg-gray-800 p-6 rounded-lg border border-gray-700">

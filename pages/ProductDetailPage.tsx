@@ -1,9 +1,11 @@
+
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { products } from '../data/products';
 import { useCart } from '../contexts/CartContext';
 import { useNotification } from '../contexts/NotificationContext';
 import ProductCard from '../components/ProductCard';
+import { theme } from '../theme';
 
 const ProductDetailPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
@@ -31,7 +33,7 @@ const ProductDetailPage: React.FC = () => {
     const relatedProducts = products.filter(p => p.category === product.category && p.id !== product.id).slice(0, 4);
 
     return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className={theme.container.page}>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 {/* Image Gallery */}
                 <div>
@@ -50,8 +52,8 @@ const ProductDetailPage: React.FC = () => {
                 {/* Product Info */}
                 <div>
                     <p className="text-cyan-400 uppercase tracking-widest text-sm">{product.category}</p>
-                    <h1 className="text-4xl font-bold text-white mt-2">{product.name}</h1>
-                    <p className="text-4xl font-semibold text-glow-accent mt-4">R$ {product.price.toFixed(2)}</p>
+                    <h1 className={`${theme.heading.section(false)} mt-2`}>{product.name}</h1>
+                    <p className={`text-4xl font-semibold ${theme.textGlow} mt-4`}>R$ {product.price.toFixed(2)}</p>
                     <p className="text-gray-300 mt-6 leading-relaxed">{product.description}</p>
                     
                     <div className="mt-8">
@@ -78,7 +80,7 @@ const ProductDetailPage: React.FC = () => {
                          </div>
                     </div>
                     
-                    <button onClick={handleAddToCart} className="mt-8 w-full theme-button text-lg">
+                    <button onClick={handleAddToCart} className={`mt-8 w-full ${theme.button} text-lg`}>
                         Guardar na Mochila
                     </button>
                 </div>
@@ -86,7 +88,7 @@ const ProductDetailPage: React.FC = () => {
 
             {/* Related Products */}
             <div className="mt-24">
-                 <h2 className="text-4xl font-bold text-center text-white mb-10">Itens Similares na Forja</h2>
+                 <h2 className={theme.heading.section()}>Itens Similares na Forja</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     {relatedProducts.map(p => (
                         <ProductCard key={p.id} product={p} />
