@@ -42,6 +42,14 @@
         transform: scale(1.05);
         box-shadow: 0 0 25px rgba(34, 211, 238, 0.5);
       }
+      .theme-button:disabled {
+        background-color: #059669; /* emerald-600 */
+        color: #F9FAFB; /* gray-50 */
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+        border-color: #10B981; /* emerald-500 */
+      }
       .theme-card {
         background-color: var(--theme-surface);
         border: 1px solid var(--theme-border);
@@ -68,6 +76,14 @@
       .text-glow-accent {
         color: var(--theme-accent);
         text-shadow: 0 0 8px rgba(34, 211, 238, 0.7);
+      }
+      @keyframes cart-jiggle {
+        0%, 100% { transform: scale(1); }
+        25% { transform: scale(1.2) rotate(-5deg); }
+        75% { transform: scale(1.2) rotate(5deg); }
+      }
+      .cart-jiggle-animation {
+        animation: cart-jiggle 0.5s ease-in-out;
       }
     </style>
   <script type="importmap">

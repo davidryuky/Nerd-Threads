@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
 import { useAuth } from '../contexts/AuthContext';
@@ -12,6 +12,18 @@ const Header: React.FC = () => {
     const { user } = useAuth();
     const navigate = useNavigate();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isCartAnimating, setIsCartAnimating] = useState(false);
+    const prevCartCountRef = useRef(cartCount);
+
+    useEffect(() => {
+        if (cartCount > prevCartCountRef.current) {
+            setIsCartAnimating(true);
+            const timer = setTimeout(() => setIsCartAnimating(false), 500); // Duration of the animation
+            return () => clearTimeout(timer);
+        }
+        prevCartCountRef.current = cartCount;
+    }, [cartCount]);
+
 
     const handleAuthAction = () => {
         if (user) {
@@ -40,7 +52,7 @@ const Header: React.FC = () => {
                         <button onClick={handleAuthAction} className="p-2 text-gray-300 hover:text-cyan-400" aria-label="Conta do Aventureiro">
                              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                         </button>
-                        <Link to="/cart" className="relative p-2 text-gray-300 hover:text-cyan-400" aria-label="Mochila de Itens">
+                        <Link to="/cart" className={`relative p-2 text-gray-300 hover:text-cyan-400 ${isCartAnimating ? 'cart-jiggle-animation' : ''}`} aria-label="Mochila de Itens">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
                             {cartCount > 0 && (
                                 <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-gray-900 transform translate-x-1/2 -translate-y-1/2 bg-cyan-400 rounded-full">{cartCount}</span>

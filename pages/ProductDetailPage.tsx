@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { products } from '../data/products';
@@ -16,6 +15,7 @@ const ProductDetailPage: React.FC = () => {
     const [selectedSize, setSelectedSize] = useState<string | null>(product ? product.sizes[0] : null);
     const [quantity, setQuantity] = useState(1);
     const [mainImage, setMainImage] = useState(product?.image);
+    const [isAdded, setIsAdded] = useState(false);
 
     if (!product) {
         return <div className="text-center py-20 text-white text-2xl">Este item não foi encontrado no nosso arsenal.</div>;
@@ -25,6 +25,8 @@ const ProductDetailPage: React.FC = () => {
         if (selectedSize) {
             addToCart(product, selectedSize, quantity);
             showNotification('Item adicionado à sua Mochila!', 'success');
+            setIsAdded(true);
+            setTimeout(() => setIsAdded(false), 2000);
         } else {
             showNotification('Aventureiro, escolha um tamanho!', 'warning');
         }
@@ -80,8 +82,21 @@ const ProductDetailPage: React.FC = () => {
                          </div>
                     </div>
                     
-                    <button onClick={handleAddToCart} className={`mt-8 w-full ${theme.button} text-lg`}>
-                        Guardar na Mochila
+                    <button 
+                        onClick={handleAddToCart} 
+                        className={`mt-8 w-full ${theme.button} text-lg`}
+                        disabled={isAdded}
+                    >
+                        {isAdded ? (
+                            <span className="flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                </svg>
+                                Adicionado!
+                            </span>
+                        ) : (
+                            'Guardar na Mochila'
+                        )}
                     </button>
                 </div>
             </div>
